@@ -4,7 +4,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body style="background-image: url('https://wallpaperaccess.com/full/250472.jpg'); background-repeat: no-repeat; background-size: cover;">
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -32,8 +32,10 @@
                             <option value="18:00"></option>
                         </datalist>
                         <br>
-                        <input type="submit" value="Get a call">
+                        <input type="submit" id ="btn1" value="Get a call">
+                        <p class = "output" id = "output1"></p>
                     </form>
+                    <ul id = 'listofitems'></ul>
                 </div>
             </div>
     </div>
@@ -47,12 +49,6 @@
             var date = event.target.tcall.value;
             var time = event.target.time.value;
 
-            localStorage.setItem('name', name);
-            localStorage.setItem('email', email);
-            localStorage.setItem('phonenumber', number);
-            localStorage.setItem('date', date);
-            localStorage.setItem('time', time);
-
             var obj = {
                 name: name,
                 email: email,
@@ -60,8 +56,15 @@
                 date: date,
                 time: time
             }
-            localStorage.setItem('userDetails', JSON.stringify(obj));
+            localStorage.setItem(obj.email, JSON.stringify(obj));
+            showOnScreen(obj);
         }
+
+        function showOnScreen(obj) {
+            var parentElem = document.getElementById('listofitems');
+            parentElem.innerHTML = parentElem.innerHTML + `<li>${obj.name} - ${obj.email} - ${obj.phonenumber} - ${obj.date} - ${obj.time}`;
+        }
+        
     </script>
     </body>
 </html>
