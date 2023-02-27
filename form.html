@@ -52,6 +52,15 @@
             localStorage.setItem('phonenumber', number);
             localStorage.setItem('date', date);
             localStorage.setItem('time', time);
+
+            var obj = {
+                name: name,
+                email: email,
+                phonenumber: number,
+                date: date,
+                time: time
+            }
+            localStorage.setItem('userDetails', JSON.stringify(obj));
         }
     </script>
     </body>
