@@ -1,53 +1,54 @@
 class Student{
-    static count=0; //static variable to call
-   constructor(name,age,ph_no,marks){
-      //complete this contructor. Variable name should be same as above params
+    constructor(name,age,marks){
       this.name=name;
       this.age=age;
-      this.ph_no=ph_no;
       this.marks=marks;
-    //Dont change anyting below this
-       Student.increaseStudentCount();
-   }
-
-   eligible(){
-       if(this.marks >=40){
-           console.log(`${this.name} age ${this.age} is eligible`);
+    }
+    setPlacementAge(minPlacementAge) {
+       //return a function which takes in argument -> minMarks
+       //returns true if students marks are gretaer than minMarks and age gretaer than minPlacementAge
+       //Complete this function only. Do not alter any other thing.
+       return (minMarks) => {
+           if(this.age >= minPlacementAge && this.marks >= minMarks){
+               return true;
+           } else {
+               return false;
+           }
        }
-       else if(this.marks<40){
-           console.log(`${this.name} age ${this.age} is not eligible`);
-       }
-   }
-    static increaseStudentCount(){
-    //increase the count of students by 1 whenever this is called
-       this.count += 1;
-   }
-
-   static printStudentCount(){
-        console.log(this.count)
-   }
-}
-
-
-function createNewStudents(){
-    const Riya=new Student('Riya',18,1234,34);
-    const Hiya=new Student('Hiya',15,2345,35);
-    const Diya=new Student('Diya',16,4567,60);
-    Student.printStudentCount();
-    Riya.eligible();
-    Hiya.eligible();
-    Diya.eligible();
-}
-async function readInput() {
-        let inputString = '';
-        var output=[];
-        process.stdin.on('data', inputStdin => {
-            inputString += inputStdin;
-            const inputArr = inputString.split(/(?:\r\n|\r|\n)/g)
-            const argumentsArr = inputArr[0].split(',');
-            createNewStudents()
-            process.exit();
-        })
-}
-readInput();
-//========== User's Code Ends Here ==========
+    }
+  }
+  
+  
+  
+  //Do not touching anything below this line
+  
+  function createNewStudents(name, age, marks){
+    const Riya=new Student(name, age, marks);
+    
+    console.log(Riya.setPlacementAge(18)(40))
+  
+  }
+  
+  async function readInput() {
+  
+      let inputString = '';
+  
+      var output=[];
+  
+      process.stdin.on('data', inputStdin => {
+  
+        inputString += inputStdin;
+  
+        const inputArr = inputString.split(/(?:\r\n|\r|\n)/g)
+  
+        const argumentsArr = inputArr[0].split(',');
+  
+        createNewStudents(argumentsArr[0], Number(argumentsArr[1]), Number(argumentsArr[2]))
+  
+        process.exit();
+  
+      })
+  
+  }
+  
+  readInput();
