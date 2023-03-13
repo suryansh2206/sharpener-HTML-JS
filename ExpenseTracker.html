@@ -73,7 +73,9 @@
                 document.getElementById('category').value = obj.category;
             }
 
+            childElement.appendChild(document.createTextNode(' '));
             childElement.appendChild(deleteButton);
+            childElement.appendChild(document.createTextNode(' '));
             childElement.appendChild(editButton);
             parentElement.appendChild(childElement);
         }
